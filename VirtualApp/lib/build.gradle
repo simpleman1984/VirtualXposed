@@ -39,7 +39,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api "me.weishu.exposed:exposed-core:0.3.5"
+    //    compile project(':hooklib')
+    //    compile project(':xposedcompat')
+    api 'com.swift.sandhook:hooklib:4.0.2'
+    api 'com.swift.sandhook:xposedcompat:4.0.2'
+//    api "me.weishu.exposed:exposed-core:0.3.5"
     implementation "me.weishu:free_reflection:2.0.0"
 }
 

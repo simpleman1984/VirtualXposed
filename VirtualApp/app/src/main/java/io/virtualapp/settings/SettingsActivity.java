@@ -11,6 +11,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.launcher3.LauncherFiles;
@@ -108,6 +109,7 @@ public class SettingsActivity extends Activity {
             moduleManage.setOnPreferenceClickListener(preference -> {
                 try {
                     Intent t = new Intent();
+                    Toast.makeText(getActivity(),"准备启动xposed程序",Toast.LENGTH_SHORT).show();
                     t.setComponent(new ComponentName("de.robv.android.xposed.installer", "de.robv.android.xposed.installer.WelcomeActivity"));
                     t.putExtra("fragment", 1);
                     int ret = VActivityManager.get().startActivity(t, 0);

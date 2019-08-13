@@ -64,6 +64,7 @@ public class VPackage implements Parcelable {
     // Applications requested features
     public ArrayList<FeatureInfo> reqFeatures = null;
     public Object mExtras;
+    public XposedModule xposedModule;
 
     public VPackage() {
     }
@@ -117,6 +118,8 @@ public class VPackage implements Parcelable {
         this.mSharedUserLabel = in.readInt();
         this.configPreferences = in.createTypedArrayList(ConfigurationInfo.CREATOR);
         this.reqFeatures = in.createTypedArrayList(FeatureInfo.CREATOR);
+        //安装包是否有xposed模块
+        this.xposedModule = in.readParcelable(XposedModule.class.getClassLoader());
     }
 
     @Override
@@ -223,6 +226,8 @@ public class VPackage implements Parcelable {
         dest.writeInt(this.mSharedUserLabel);
         dest.writeTypedList(this.configPreferences);
         dest.writeTypedList(this.reqFeatures);
+        //写入安装信息
+        dest.writeParcelable(xposedModule, flags);
     }
 
     public static class ActivityIntentInfo extends IntentInfo {
@@ -532,6 +537,44 @@ public class VPackage implements Parcelable {
             while (N-- > 0) {
                 intents.add(new IntentInfo(src));
             }
+        }
+    }
+
+    //for xposed module
+    public static class XposedModule implements Parcelable {
+
+        public String desc;
+        public int minVersion;
+
+        public XposedModule() {
+        }
+
+        protected XposedModule(Parcel in) {
+            desc = in.readString();
+            minVersion = in.readInt();
+        }
+
+        public static final Creator<XposedModule> CREATOR = new Creator<XposedModule>() {
+            @Override
+            public XposedModule createFromParcel(Parcel in) {
+                return new XposedModule(in);
+            }
+
+            @Override
+            public XposedModule[] newArray(int size) {
+                return new XposedModule[size];
+            }
+        };
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(desc);
+            dest.writeInt(minVersion);
         }
     }
 }

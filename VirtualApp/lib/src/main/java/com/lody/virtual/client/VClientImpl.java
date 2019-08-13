@@ -50,6 +50,7 @@ import com.lody.virtual.os.VUserHandle;
 import com.lody.virtual.remote.InstalledAppInfo;
 import com.lody.virtual.remote.PendingResultData;
 import com.lody.virtual.remote.VDeviceInfo;
+import com.lody.virtual.sandxposed.SandXposed;
 import com.lody.virtual.server.interfaces.IUiCallback;
 
 import java.io.File;
@@ -61,7 +62,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.weishu.exposed.ExposedBridge;
 import mirror.android.app.ActivityThread;
 import mirror.android.app.ActivityThreadNMR1;
 import mirror.android.app.ContextImpl;
@@ -325,17 +325,22 @@ public final class VClientImpl extends IVClient.Stub {
             applicationInfo.splitNames = new String[1];
         }
 
-
+        //是否开启xposed的拦截点~
         boolean enableXposed = VirtualCore.get().isXposedEnabled();
         if (enableXposed) {
             VLog.i(TAG, "Xposed is enabled.");
-            ClassLoader originClassLoader = context.getClassLoader();
-            ExposedBridge.initOnce(context, data.appInfo, originClassLoader);
-            List<InstalledAppInfo> modules = VirtualCore.get().getInstalledApps(0);
-            for (InstalledAppInfo module : modules) {
-                ExposedBridge.loadModule(module.apkPath, module.getOdexFile().getParent(), module.libPath,
-                        data.appInfo, originClassLoader);
-            }
+
+            //替换为SandXposed
+            SandXposed.injectXposedModule(context, packageName, processName);
+
+            //老的写法，epic报错
+//            ClassLoader originClassLoader = context.getClassLoader();
+//            ExposedBridge.initOnce(context, data.appInfo, originClassLoader);
+//            List<InstalledAppInfo> modules = VirtualCore.get().getInstalledApps(0);
+//            for (InstalledAppInfo module : modules) {
+//                ExposedBridge.loadModule(module.apkPath, module.getOdexFile().getParent(), module.libPath,
+//                        data.appInfo, originClassLoader);
+//            }
         } else {
             VLog.w(TAG, "Xposed is disable..");
         }

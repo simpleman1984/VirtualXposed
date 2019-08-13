@@ -78,7 +78,8 @@ public class NewHomeActivity extends NexusLauncherActivity {
         showMenuKey();
         mUiHandler = new Handler(getMainLooper());
         alertForMeizu();
-        alertForDonate();
+        //暂时屏蔽捐助的代码
+//        alertForDonate();
         mDirectlyBack = sharedPreferences.getBoolean(SettingsActivity.DIRECTLY_BACK_KEY, false);
     }
 

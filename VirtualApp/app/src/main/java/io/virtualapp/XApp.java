@@ -3,17 +3,19 @@ package io.virtualapp;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.support.multidex.MultiDexApplication;
 
 import com.lody.virtual.client.NativeEngine;
 import com.lody.virtual.client.core.VirtualCore;
 import com.lody.virtual.client.stub.VASettings;
+import com.lody.virtual.sandxposed.SandXposed;
 
 import io.virtualapp.delegate.MyVirtualInitializer;
 
 /**
  * @author Lody
  */
-public class XApp extends Application {
+public class XApp extends MultiDexApplication {
 
     private static final String TAG = "XApp";
 
@@ -29,6 +31,9 @@ public class XApp extends Application {
     protected void attachBaseContext(Context base) {
         gApp = this;
         super.attachBaseContext(base);
+        //初始化xposed拦截~
+        SandXposed.init();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             NativeEngine.disableJit(Build.VERSION.SDK_INT);
         }
