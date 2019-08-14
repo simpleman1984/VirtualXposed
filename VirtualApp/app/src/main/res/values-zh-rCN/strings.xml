@@ -27,6 +27,7 @@
     <string name="menu_virtual_location">虚拟定位</string>
     <string name="menu_about">关于</string>
     <string name="menu_reboot">重启</string>
+    <string name="menu_reboot_app">硬重启</string>
     <string name="installing_tips">正在安装 %1$s…</string>
     <string name="update_success_tips">%1$s 更新成功！</string>
     <string name="install_success_tips">模块安装完后需要去XposedInstaller的模块设置里勾选才能生效哦～</string>

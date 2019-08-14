@@ -102,10 +102,10 @@
         android:persistent="false"
         android:title="@string/settings_task_manage_text" />
 
-    <Preference
-        android:key="settings_donate"
-        android:persistent="false"
-        android:title="@string/about_donate_title" />
+    <!--<Preference-->
+        <!--android:key="settings_donate"-->
+        <!--android:persistent="false"-->
+        <!--android:title="@string/about_donate_title" />-->
 
     <Preference
         android:key="settings_faq"
@@ -121,4 +121,9 @@
         android:key="settings_reboot"
         android:persistent="false"
         android:title="@string/menu_reboot" />
+
+    <Preference
+        android:key="settings_reboot_self"
+        android:persistent="false"
+        android:title="@string/menu_reboot_app" />
 </PreferenceScreen>

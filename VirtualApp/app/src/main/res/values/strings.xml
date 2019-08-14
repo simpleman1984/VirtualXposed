@@ -28,6 +28,7 @@
     <string name="menu_virtual_location">Virtual Location</string>
     <string name="menu_about">About</string>
     <string name="menu_reboot">Reboot</string>
+    <string name="menu_reboot_app">硬重启</string>
     <string name="installing_tips">Installing %1$s…</string>
     <string name="update_success_tips">Update %1$s success!</string>
     <string name="install_success_tips">The Xposed module will not take effect until you enable it in XposedInstaller\'s module setting.</string>

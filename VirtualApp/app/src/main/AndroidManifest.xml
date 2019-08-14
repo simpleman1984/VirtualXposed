@@ -80,6 +80,12 @@
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity
+            android:name=".settings.ModuleMannageActivity"
+            android:label="模块管理"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <activity
             android:name=".settings.TaskManageActivity"
             android:label="@string/settings_task_manage_text"
             android:screenOrientation="portrait"

@@ -11,13 +11,11 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.launcher3.LauncherFiles;
 import com.lody.virtual.client.core.VirtualCore;
 import com.lody.virtual.client.env.Constants;
-import com.lody.virtual.client.ipc.VActivityManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +24,7 @@ import io.virtualapp.R;
 import io.virtualapp.VCommends;
 import io.virtualapp.gms.FakeGms;
 import io.virtualapp.home.ListAppActivity;
-import io.virtualapp.utils.Misc;
+import io.virtualapp.utils.AppDialogUtils;
 
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
@@ -43,6 +41,7 @@ public class SettingsActivity extends Activity {
     private static final String DONATE_KEY = "settings_donate";
     private static final String ABOUT_KEY = "settings_about";
     private static final String REBOOT_KEY = "settings_reboot";
+    private static final String REBOOT_SELF_KEY = "settings_reboot_self";
     private static final String HIDE_SETTINGS_KEY = "advance_settings_hide_settings";
     private static final String DISABLE_INSTALLER_KEY = "advance_settings_disable_installer";
     public static final String ENABLE_LAUNCHER = "advance_settings_enable_launcher";
@@ -88,9 +87,10 @@ public class SettingsActivity extends Activity {
             Preference taskManage = findPreference(TASK_MANAGE_KEY);
             Preference desktop = findPreference(DESKTOP_SETTINGS_KEY);
             Preference faq = findPreference(FAQ_SETTINGS_KEY);
-            Preference donate = findPreference(DONATE_KEY);
+//            Preference donate = findPreference(DONATE_KEY);
             Preference about = findPreference(ABOUT_KEY);
             Preference reboot = findPreference(REBOOT_KEY);
+            Preference rebootSelf = findPreference(REBOOT_SELF_KEY);
             Preference fileMange = findPreference(FILE_MANAGE);
             Preference permissionManage = findPreference(PERMISSION_MANAGE);
 
@@ -106,19 +106,26 @@ public class SettingsActivity extends Activity {
                 return false;
             });
 
+            //模块管理【打开内置的app，先不再使用，重新写逻辑】
+//            moduleManage.setOnPreferenceClickListener(preference -> {
+//                try {
+//                    Intent t = new Intent();
+//                    Toast.makeText(getActivity(),"准备启动xposed程序",Toast.LENGTH_SHORT).show();
+//                    t.setComponent(new ComponentName("de.robv.android.xposed.installer", "de.robv.android.xposed.installer.WelcomeActivity"));
+//                    t.putExtra("fragment", 1);
+//                    int ret = VActivityManager.get().startActivity(t, 0);
+//                    if (ret < 0) {
+//                        Toast.makeText(getActivity(), R.string.xposed_installer_not_found, Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (Throwable ignored) {
+//                    ignored.printStackTrace();
+//                }
+//                return false;
+//            });
+
+            //新的模块管理
             moduleManage.setOnPreferenceClickListener(preference -> {
-                try {
-                    Intent t = new Intent();
-                    Toast.makeText(getActivity(),"准备启动xposed程序",Toast.LENGTH_SHORT).show();
-                    t.setComponent(new ComponentName("de.robv.android.xposed.installer", "de.robv.android.xposed.installer.WelcomeActivity"));
-                    t.putExtra("fragment", 1);
-                    int ret = VActivityManager.get().startActivity(t, 0);
-                    if (ret < 0) {
-                        Toast.makeText(getActivity(), R.string.xposed_installer_not_found, Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Throwable ignored) {
-                    ignored.printStackTrace();
-                }
+                startActivity(new Intent(getActivity(), ModuleMannageActivity.class));
                 return false;
             });
 
@@ -155,10 +162,11 @@ public class SettingsActivity extends Activity {
                 return false;
             });
 
-            donate.setOnPreferenceClickListener(preference -> {
-                Misc.showDonate(getActivity());
-                return false;
-            });
+//            donate.setOnPreferenceClickListener(preference -> {
+//                Misc.showDonate(getActivity());
+//                return false;
+//            });
+
             about.setOnPreferenceClickListener(preference -> {
                 startActivity(new Intent(getActivity(), AboutActivity.class));
                 return false;
@@ -178,6 +186,12 @@ public class SettingsActivity extends Activity {
                     alertDialog.show();
                 } catch (Throwable ignored) {
                 }
+                return false;
+            });
+
+            //硬重启
+            rebootSelf.setOnPreferenceClickListener(preference -> {
+                AppDialogUtils.showAppDetailDialog(getActivity());
                 return false;
             });
 

@@ -62,7 +62,8 @@ public class NewHomeActivity extends NexusLauncherActivity {
 
     private Handler mUiHandler;
     private boolean mDirectlyBack = false;
-    private boolean checkXposedInstaller = true;
+    //启用sandhook，拦截方案之后，无需再安装xposed installer
+    private boolean checkXposedInstaller = false;
 
     public static void goHome(Context context) {
         Intent intent = new Intent(context, NewHomeActivity.class);

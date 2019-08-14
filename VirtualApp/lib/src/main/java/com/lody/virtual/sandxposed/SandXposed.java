@@ -36,6 +36,7 @@ public class SandXposed {
         if (BlackList.canNotInject(packageName, processName))
             return;
 
+        //读取已经安装的xposed模块列表，并注入对应的代码~
         List<InstalledAppInfo> appInfos = VirtualCore.get().getInstalledApps(InstalledAppInfo.FLAG_XPOSED_MODULE | InstalledAppInfo.FLAG_ENABLED_XPOSED_MODULE);
         ClassLoader classLoader = context.getClassLoader();
 
@@ -53,6 +54,8 @@ public class SandXposed {
         XposedCompat.classLoader = XposedCompat.getSandHookXposedClassLoader(classLoader, XposedBridge.class.getClassLoader());
         XposedCompat.isFirstApplication = true;
 
+        //一个非常好的示例
+        //https://github.com/M66B/XPrivacyLua/blob/master/app/src/main/java/eu/faircode/xlua/XLua.java
         //do hook
         XposedHelpers.findAndHookMethod(Activity.class, "onResume", new XC_MethodHook() {
             @Override
