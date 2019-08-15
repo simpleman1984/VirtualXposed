@@ -14,9 +14,9 @@
         android:title="@string/settings_module_manage" />
 
     <Preference
-        android:key="settings_plugin_recommend"
+        android:key="settings_fakegps"
         android:persistent="false"
-        android:title="@string/settings_plugin_recommend" />
+        android:title="模拟定位" />
 
     <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:key="settings_advance"
@@ -88,11 +88,6 @@
     </PreferenceScreen>
 
     <Preference
-        android:key="settings_fakegps"
-        android:persistent="false"
-        android:title="模拟定位" />
-
-    <Preference
         android:key="settings_permission_manage"
         android:persistent="false"
         android:title="@string/settings_permission_manage_text" />
@@ -111,6 +106,11 @@
         <!--android:key="settings_donate"-->
         <!--android:persistent="false"-->
         <!--android:title="@string/about_donate_title" />-->
+
+    <Preference
+        android:key="settings_plugin_recommend"
+        android:persistent="false"
+        android:title="@string/settings_plugin_recommend" />
 
     <Preference
         android:key="settings_faq"

@@ -3,11 +3,8 @@ package io.virtualapp.settings;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -34,6 +31,10 @@ import com.lody.virtual.sandxposed.XposedModuleProfile;
 import io.island.R;
 import io.virtualapp.abs.ui.VActivity;
 
+/**
+ * 百度地图官方手册
+ * http://lbsyun.baidu.com/index.php?title=androidsdk/guide/tool/coordinate
+ */
 public class BaiduMapActivity extends VActivity {
 
     public LocationClient mLocationClient = null;
