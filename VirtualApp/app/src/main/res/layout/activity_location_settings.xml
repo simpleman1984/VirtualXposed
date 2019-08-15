@@ -4,8 +4,20 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/appdata_list"
+    <TextView
+        android:id="@+id/currentFakeGps"
+        android:gravity="start"
+        android:textSize="13sp"
+        android:textColor="@color/uninstall_target_hover_tint"
+        android:visibility="visible"
+        android:singleLine="true"
+        android:text="暂未设置虚拟地址"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/baidu_map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
 </LinearLayout>

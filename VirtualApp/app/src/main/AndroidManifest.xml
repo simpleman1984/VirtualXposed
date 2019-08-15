@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="io.virtualapp">
+    package="io.island">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
@@ -9,7 +9,7 @@
     <uses-sdk tools:overrideLibrary="com.android.launcher3,android.support.dynamicanimation" />
 
     <application
-        android:name=".XApp"
+        android:name="io.virtualapp.XApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/vxp"
@@ -30,8 +30,19 @@
             android:name="io.fabric.ApiKey"
             android:value="797c6ad1f87c908a4d7f6e8091e6466848b1611d" />
 
+        <!--- 百度地图的 ak -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="Gb7niMkK2834vtNEUYRiZ97K3vy79IcF"
+            />
+        <!-- 百度地图定位监听服务 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="io.virtualapp.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -41,12 +52,12 @@
         </activity>
 
         <activity
-            android:name=".home.ListAppActivity"
+            android:name="io.virtualapp.home.ListAppActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name=".home.LoadingActivity"
+            android:name="io.virtualapp.home.LoadingActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:screenOrientation="portrait"
@@ -54,50 +65,56 @@
             android:theme="@style/TransparentTheme" />
 
         <activity
-            android:name=".settings.AboutActivity"
+            android:name="io.virtualapp.settings.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name=".home.NewHomeActivity" />
+        <activity android:name="io.virtualapp.home.NewHomeActivity" />
 
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name="io.virtualapp.settings.SettingsActivity"
             android:label="@string/settings_title"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Material.Light" />
 
 
         <activity
-            android:name=".settings.RecommendPluginActivity"
+            android:name="io.virtualapp.settings.RecommendPluginActivity"
             android:label="@string/settings_plugin_recommend"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity
-            android:name=".settings.AppManageActivity"
+            android:name="io.virtualapp.settings.AppManageActivity"
             android:label="@string/settings_app_manage_text"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity
-            android:name=".settings.ModuleMannageActivity"
+            android:name="io.virtualapp.settings.ModuleMannageActivity"
             android:label="模块管理"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity
-            android:name=".settings.TaskManageActivity"
+            android:name="io.virtualapp.settings.BaiduMapActivity"
+            android:label="模拟定位"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <activity
+            android:name="io.virtualapp.settings.TaskManageActivity"
             android:label="@string/settings_task_manage_text"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity
-            android:name=".sys.ShareBridgeActivity"
+            android:name="io.virtualapp.sys.ShareBridgeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:excludeFromRecents="true"
             android:label="@string/shared_to_vxp"
             android:screenOrientation="portrait"
-            android:taskAffinity="io.va.exposed.share"
+            android:taskAffinity="io.island.exposed.share"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -107,7 +124,7 @@
         </activity>
 
         <activity
-            android:name=".sys.InstallerActivity"
+            android:name="io.virtualapp.sys.InstallerActivity"
             android:allowTaskReparenting="true"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:excludeFromRecents="true"
@@ -115,14 +132,14 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_installer_label"
             android:noHistory="true"
-            android:taskAffinity="io.va.exposed.installer"
+            android:taskAffinity="io.island.exposed.installer"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity-alias
             android:name="vxp.installer"
             android:enabled="true"
             android:exported="true"
-            android:targetActivity=".sys.InstallerActivity">
+            android:targetActivity="io.virtualapp.sys.InstallerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -144,7 +161,7 @@
             android:name="vxp.launcher"
             android:enabled="false"
             android:exported="true"
-            android:targetActivity=".home.NewHomeActivity">
+            android:targetActivity="io.virtualapp.home.NewHomeActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -158,16 +175,16 @@
 
 
         <service
-            android:name=".update.VAVersionService"
+            android:name="io.virtualapp.update.VAVersionService"
             android:enabled="true"
             android:exported="true" />
 
         <receiver
-            android:name=".dev.CmdReceiver"
+            android:name="io.virtualapp.dev.CmdReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.va.exposed.CMD" />
+                <action android:name="io.island.exposed.CMD" />
             </intent-filter>
         </receiver>
     </application>

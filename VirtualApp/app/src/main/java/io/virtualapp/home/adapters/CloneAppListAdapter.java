@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.List;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VUiKit;
 import io.virtualapp.glide.GlideUtils;
 import io.virtualapp.home.models.AppInfo;

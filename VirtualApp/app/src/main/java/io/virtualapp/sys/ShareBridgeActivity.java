@@ -23,7 +23,8 @@ import com.lody.virtual.client.ipc.VPackageManager;
 
 import java.util.List;
 
-import io.virtualapp.R;
+import io.island.R;
+
 
 /**
  * author: weishu on 18/3/16.

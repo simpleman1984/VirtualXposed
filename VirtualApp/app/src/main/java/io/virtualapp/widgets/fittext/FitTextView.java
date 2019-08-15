@@ -11,7 +11,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
-import io.virtualapp.R;
+import io.island.R;
 
 public class FitTextView extends BaseTextView {
 

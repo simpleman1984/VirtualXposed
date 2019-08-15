@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import io.virtualapp.R;
+import io.island.R;
 import moe.feng.alipay.zerosdk.AlipayZeroSdk;
 
 /**

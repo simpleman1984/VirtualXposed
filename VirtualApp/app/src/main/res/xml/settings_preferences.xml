@@ -88,6 +88,11 @@
     </PreferenceScreen>
 
     <Preference
+        android:key="settings_fakegps"
+        android:persistent="false"
+        android:title="模拟定位" />
+
+    <Preference
         android:key="settings_permission_manage"
         android:persistent="false"
         android:title="@string/settings_permission_manage_text" />

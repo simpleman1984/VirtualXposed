@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;
 
-import io.virtualapp.R;
+import io.island.R;
 
 /**
  * @author weishu

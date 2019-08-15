@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.VCommends;
 import io.virtualapp.XApp;
 import io.virtualapp.abs.ui.VUiKit;

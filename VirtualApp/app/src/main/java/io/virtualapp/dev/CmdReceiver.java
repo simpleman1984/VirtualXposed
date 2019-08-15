@@ -20,7 +20,7 @@ import io.virtualapp.home.LoadingActivity;
 
 public class CmdReceiver extends BroadcastReceiver {
 
-    private static final String ACTION = "io.va.exposed.CMD";
+    private static final String ACTION = "io.island.exposed.CMD";
     private static final String KEY_CMD = "cmd";
     private static final String KEY_PKG = "pkg";
     private static final String KEY_UID = "uid";

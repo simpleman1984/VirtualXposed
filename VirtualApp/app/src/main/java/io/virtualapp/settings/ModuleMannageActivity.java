@@ -25,7 +25,7 @@ import com.lody.virtual.sandxposed.XposedModuleProfile;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VActivity;
 import io.virtualapp.abs.ui.VUiKit;
 import io.virtualapp.glide.GlideUtils;

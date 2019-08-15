@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.gms.FakeGms;
 import io.virtualapp.home.LoadingActivity;
 import okhttp3.OkHttpClient;

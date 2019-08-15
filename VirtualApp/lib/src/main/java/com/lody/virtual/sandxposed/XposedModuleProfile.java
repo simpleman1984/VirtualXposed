@@ -30,4 +30,22 @@ public class XposedModuleProfile {
         return config.getBoolean(pkg, true);
     }
 
+    public static void fakeLatitude(double latitude){
+        config.edit().putString("fakeLatitude", latitude + "").apply();
+    }
+
+    public  static  double fakeLatitude(){
+        String saveValue = config.getString("fakeLatitude", "-1");
+        return Double.parseDouble(saveValue);
+    }
+
+    public static void fakeLongitude(double longitude){
+        config.edit().putString("fakeLongitude", longitude + "").apply();
+    }
+
+    public  static  double fakeLongitude(){
+        String saveValue =  config.getString("fakeLongitude", "-1");
+        return Double.parseDouble(saveValue);
+    }
+
 }

@@ -18,7 +18,7 @@ import com.lody.virtual.os.VEnvironment;
 import java.io.File;
 import java.io.IOException;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VUiKit;
 import io.virtualapp.settings.NougatPolicy;
 

@@ -22,10 +22,10 @@ android {
         }
     }
 
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "io.va.exposed"
+        applicationId "io.island.exposed"
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 173
@@ -78,7 +78,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/BaiduLBS_Android.jar')
     implementation project(':lib')
     implementation project(':launcher')
     //Android Lib

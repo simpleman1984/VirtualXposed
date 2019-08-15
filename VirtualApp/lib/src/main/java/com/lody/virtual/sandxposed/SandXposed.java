@@ -21,6 +21,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 import static com.swift.sandhook.xposedcompat.utils.DexMakerUtils.MD5;
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
 public class SandXposed {
 
@@ -56,7 +57,33 @@ public class SandXposed {
 
         //一个非常好的示例
         //https://github.com/M66B/XPrivacyLua/blob/master/app/src/main/java/eu/faircode/xlua/XLua.java
-        //do hook
+        //拦截GPS定位查询
+        findAndHookMethod("android.location.Location", classLoader, "getLatitude", new XC_MethodHook() {
+            protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param)
+            {
+                double fakeLatitude = XposedModuleProfile.fakeLatitude();
+                if(fakeLatitude > 0){
+                    param.setResult(fakeLatitude);
+                    Log.e("XposedHook","拦截纬度数据查询：" + fakeLatitude);
+                } else {
+                    Log.e("XposedHook","未拦截纬度数据查询");
+                }
+
+            }
+        });
+        findAndHookMethod("android.location.Location", classLoader, "getLongitude", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) {
+                double fakeLongitude = XposedModuleProfile.fakeLongitude();
+                if(fakeLongitude > 0){
+                    param.setResult(fakeLongitude);
+                    Log.e("XposedHook","拦截经度数据查询：" + fakeLongitude);
+                } else {
+                    Log.e("XposedHook","未拦截经度数据查询");
+                }
+            }
+        });
+
         XposedHelpers.findAndHookMethod(Activity.class, "onResume", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {

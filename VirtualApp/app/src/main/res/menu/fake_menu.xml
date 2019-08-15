@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--android:icon="@drawable/ic_near_me_white_24dp"-->
+    <item
+        android:id="@+id/current_pos"
+        android:title="当前位置"
+        android:name=""
+        app:showAsAction="ifRoom"
+        android:orderInCategory="0" />
+
+    <item
+        android:id="@+id/clear_fakeGps"
+        android:title="清空设置"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="0"/>
+
+</menu>

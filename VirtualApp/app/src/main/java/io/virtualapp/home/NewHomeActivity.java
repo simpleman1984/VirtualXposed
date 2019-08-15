@@ -41,7 +41,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VUiKit;
 import io.virtualapp.settings.SettingsActivity;
 import io.virtualapp.update.VAVersionService;
@@ -227,6 +227,7 @@ public class NewHomeActivity extends NexusLauncherActivity {
                 // ignore
             }
         }
+        Log.e("虚拟App","准备启动虚拟app!  packageName:" + packageName + ",userId:" + usedId);
         boolean result = LoadingActivity.launch(this, packageName, usedId);
         if (!result) {
             throw new ActivityNotFoundException("can not launch activity for :" + intent);

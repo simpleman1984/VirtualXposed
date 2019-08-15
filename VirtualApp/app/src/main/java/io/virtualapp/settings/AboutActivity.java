@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VActivity;
 import io.virtualapp.update.VAVersionService;
 import mehdi.sakout.aboutpage.AboutPage;

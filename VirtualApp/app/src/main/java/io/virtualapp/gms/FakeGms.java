@@ -26,7 +26,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VUiKit;
 import io.virtualapp.utils.DialogUtil;
 import okhttp3.OkHttpClient;

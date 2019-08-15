@@ -22,7 +22,7 @@ import com.lody.virtual.remote.InstalledAppInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.abs.ui.VActivity;
 import io.virtualapp.glide.GlideUtils;
 

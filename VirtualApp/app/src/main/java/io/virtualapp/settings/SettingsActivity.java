@@ -20,7 +20,7 @@ import com.lody.virtual.client.env.Constants;
 import java.io.File;
 import java.io.IOException;
 
-import io.virtualapp.R;
+import io.island.R;
 import io.virtualapp.VCommends;
 import io.virtualapp.gms.FakeGms;
 import io.virtualapp.home.ListAppActivity;
@@ -53,6 +53,7 @@ public class SettingsActivity extends Activity {
     private static final String DISABLE_XPOSED = "advance_settings_disable_xposed";
     private static final String FILE_MANAGE = "settings_file_manage";
     private static final String PERMISSION_MANAGE = "settings_permission_manage";
+    private static final String Settings_Fakegps = "settings_fakegps";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,7 @@ public class SettingsActivity extends Activity {
             Preference rebootSelf = findPreference(REBOOT_SELF_KEY);
             Preference fileMange = findPreference(FILE_MANAGE);
             Preference permissionManage = findPreference(PERMISSION_MANAGE);
-
+            Preference fageGps = findPreference(Settings_Fakegps);
 
             SwitchPreference disableInstaller = (SwitchPreference) findPreference(DISABLE_INSTALLER_KEY);
             SwitchPreference enableLauncher = (SwitchPreference) findPreference(ENABLE_LAUNCHER);
@@ -126,6 +127,12 @@ public class SettingsActivity extends Activity {
             //新的模块管理
             moduleManage.setOnPreferenceClickListener(preference -> {
                 startActivity(new Intent(getActivity(), ModuleMannageActivity.class));
+                return false;
+            });
+
+            //打开定位模拟【百度地图】
+            fageGps.setOnPreferenceClickListener(preference -> {
+                startActivity(new Intent(getActivity(), BaiduMapActivity.class));
                 return false;
             });
 
