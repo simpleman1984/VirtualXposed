@@ -118,6 +118,7 @@ public class BinderInvocationStub extends MethodInvocationStub<IInterface> imple
 
     @Override
     public boolean transact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+        Log.e("XposedHook","transact____transact_____" + mBaseBinder.toString());
         return mBaseBinder.transact(code, data, reply, flags);
     }
 

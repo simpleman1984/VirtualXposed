@@ -4,6 +4,7 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
+import android.util.Log;
 
 import java.io.FileDescriptor;
 import java.lang.reflect.InvocationHandler;
@@ -101,6 +102,7 @@ abstract class StubBinder implements IBinder {
 
 	@Override
 	public boolean transact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+		Log.e("XposedHook","transact____transact__stubbinder___" + mBase.toString());
 		return mBase.transact(code, data, reply, flags);
 	}
 

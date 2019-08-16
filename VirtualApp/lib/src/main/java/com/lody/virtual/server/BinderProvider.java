@@ -5,10 +5,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.lody.virtual.client.core.VirtualCore;
 import com.lody.virtual.client.ipc.ServiceManagerNative;
@@ -60,6 +62,8 @@ public final class BinderProvider extends ContentProvider {
         addService(ServiceManagerNative.VS, VirtualStorageService.get());
         addService(ServiceManagerNative.DEVICE, VDeviceManagerService.get());
         addService(ServiceManagerNative.VIRTUAL_LOC, VirtualLocationService.get());
+        //添加一个第三方补丁服务
+        addService("FixerService",new FixerService(context));
         return true;
     }
 
@@ -105,9 +109,13 @@ public final class BinderProvider extends ContentProvider {
 
     private class ServiceFetcher extends IServiceFetcher.Stub {
         @Override
-        public IBinder getService(String name) throws RemoteException {
+        public IBinder getService(String name) {
             if (name != null) {
-                return ServiceCache.getService(name);
+                IBinder binder = ServiceCache.getService(name);
+                int uid = ((Binder)binder).getCallingUid();
+                int callingPid = ((Binder)binder).getCallingPid();
+                Log.e("XposedHook","读取Service的Binder：" + name + " Process.myPid:"+ android.os.Process.myPid() + "_CallingPid:"+ callingPid + "____CallingUid:" +  uid);
+                return binder;
             }
             return null;
         }
