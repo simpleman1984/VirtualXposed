@@ -105,3 +105,25 @@ dependencies {
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }
+
+//afterEvaluate {
+//    installDebug.doLast {
+//        updateVirtualXposedAPP.execute()
+//        rebootVirtualXposedAPP.execute()
+//        launchVirtualXposedAPP.execute()
+//    }
+//}
+
+task updateVirtualXposedAPP(type: Exec) {
+    def pkg = android.defaultConfig.applicationId
+    commandLine android.adbExecutable, 'shell', 'am', 'broadcast', '-a', 'io.island.exposed.CMD', '-e', 'cmd', 'update', '-e', 'pkg', 'com.gx.xposed_whitemouse'
+}
+
+task rebootVirtualXposedAPP(type: Exec) {
+    commandLine android.adbExecutable, 'shell', 'am', 'broadcast', '-a', 'io.island.exposed.CMD', '-e', 'cmd', 'reboot'
+}
+
+task launchVirtualXposedAPP(type: Exec) {
+    def pkg = "The package you hooked" // for example: com.tencent.mm
+    commandLine android.adbExecutable, 'shell', 'am', 'broadcast', '-a', 'io.island.exposed.CMD', '-e', 'cmd', 'launch', '-e', 'pkg', 'com.gx.xposed_whitemouse'
+}
