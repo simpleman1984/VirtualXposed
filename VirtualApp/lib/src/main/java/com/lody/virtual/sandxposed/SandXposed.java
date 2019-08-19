@@ -66,7 +66,28 @@ public class SandXposed {
         XposedCompat.classLoader = XposedCompat.getSandHookXposedClassLoader(classLoader, XposedBridge.class.getClassLoader());
         XposedCompat.isFirstApplication = true;
 
+//        XC_LoadPackage.LoadPackageParam loadPackageParam = new XC_LoadPackage.LoadPackageParam(new XposedBridge.CopyOnWriteSortedSet());
+//        try {
+//            loadPackageParam.classLoader = XposedCompat.getSandHookXposedClassLoader(classLoader, XposedBridge.class.getClassLoader());
+//            new RootHider().handleLoadPackage(loadPackageParam);
+//        } catch (Throwable throwable) {
+//            throwable.printStackTrace();
+//        }
+
         //一个非常好的示例
+//        Class clazz = XposedHelpers.findClass("cn.jiguang.ab.b", null);
+//        Method m = XposedHelpers.findMethodExact(clazz, "d", Context.class);
+//        m.setAccessible(true);
+//
+//        XposedBridge.hookMethod(m, new XC_MethodHook() {
+//            @Override
+//            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                Log.e("call -> 极光" , (String) param.args[0]);
+//                param.setResult(true);
+//                super.beforeHookedMethod(param);
+//            }
+//        });
+
         //https://github.com/M66B/XPrivacyLua/blob/master/app/src/main/java/eu/faircode/xlua/XLua.java
         findAndHookMethod("android.os.storage.StorageManager", classLoader, "getCacheQuotaBytes", UUID.class, new XC_MethodHook() {
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param)

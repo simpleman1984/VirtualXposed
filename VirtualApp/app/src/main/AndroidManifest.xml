@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
+    <permission android:name="com.spdbccc.app.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.spdbccc.app.permission.JPUSH_MESSAGE" />
+
     <uses-sdk tools:overrideLibrary="com.android.launcher3,android.support.dynamicanimation" />
 
     <application

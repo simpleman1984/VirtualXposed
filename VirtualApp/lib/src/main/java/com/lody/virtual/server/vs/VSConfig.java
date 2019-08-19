@@ -11,8 +11,15 @@ import android.os.Parcelable;
  */
 public class VSConfig implements Parcelable {
 
+    /**
+     * 是否开启sd卡，路径重定向；
+     * 修改默认为开启~
+     */
     public boolean enable;
 
+    /**
+     * 虚拟sdk路径
+     */
     public String vsPath;
 
     @Override

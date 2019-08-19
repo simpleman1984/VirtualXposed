@@ -49,7 +49,7 @@ public class VirtualStorageService extends IVirtualStorageService.Stub {
         VSConfig config = userMap.get(packageName);
         if (config == null) {
             config = new VSConfig();
-            config.enable = false;
+            config.enable = true;
             userMap.put(packageName, config);
         }
         return config;

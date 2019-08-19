@@ -384,6 +384,8 @@ public final class VClientImpl extends IVClient.Stub {
                 // 2. tell vams that launch finish.
                 VActivityManager.get().appDoneExecuting();
 
+                e.printStackTrace();
+
                 // 3. rethrow
                 throw new RuntimeException(
                         "Unable to create application " + (mInitialApplication == null ? " [null application] " : mInitialApplication.getClass().getName())
