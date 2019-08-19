@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.island.R;
@@ -31,11 +32,16 @@ public class CloneAppListAdapter extends DragSelectRecyclerViewAdapter<CloneAppL
     private List<AppInfo> mAppList;
     private ItemEventListener mItemEventListener;
 
+    private List<String> blacklist = new ArrayList<>();
+
     private Context mContext;
     private File mFrom;
 
 
     public CloneAppListAdapter(Context context, @Nullable File from) {
+        //引用黑名单，仅仅只是克隆的时候不显示；安装成功后，还是会显示出来的。
+        initblacklist();
+
         mContext = context;
         mFrom = from;
         this.mInflater = LayoutInflater.from(context);
@@ -45,7 +51,32 @@ public class CloneAppListAdapter extends DragSelectRecyclerViewAdapter<CloneAppL
         );
         params.setFullSpan(true);
         mFooterView.setLayoutParams(params);
+    }
 
+    private void initblacklist(){
+        //宁波银行【有xposed检测加自我校验】
+        blacklist.add("com.nbbank");
+
+        //浦发银行【有xposed检测加自我校验】反编译后，啥都没有。。
+        blacklist.add("com.spdbccc.app");
+
+        //中国移动【有xposed检测加自我校验】
+        blacklist.add("com.greenpoint.android.mc10086.activity");
+
+        //brave浏览器【好像有个gpu的错误】
+        blacklist.add("com.brave.browser");
+
+        //下厨房，也有问题；暂不屏蔽，慢慢处理
+//        blacklist.add("com.xiachufang");
+
+        //QQ浏览器（一堆莫名的错误）
+        blacklist.add("com.tencent.mtt");
+
+        //远程桌面（基本不用，懒得处理）
+        blacklist.add("com.rdc_zh.android");
+
+        //termxui【没必要，安装在虚拟机里面】
+        blacklist.add("com.termux");
     }
 
     public void setOnItemClickListener(ItemEventListener mItemEventListener) {
@@ -57,7 +88,15 @@ public class CloneAppListAdapter extends DragSelectRecyclerViewAdapter<CloneAppL
     }
 
     public void setList(List<AppInfo> models) {
-        this.mAppList = models;
+        //移除黑名单app
+        List<AppInfo> listCopied = new ArrayList<>();
+        for(AppInfo appInfo : models){
+            String pkg = appInfo.packageName;
+            if(!blacklist.contains(pkg)){
+                listCopied.add(appInfo);
+            }
+        }
+        this.mAppList = listCopied;
         notifyDataSetChanged();
     }
 
